@@ -1,4 +1,5 @@
 # 🚀 AI Token Optimizer (Universal)
+![Project Hero](resources/media/hero_image.png)
 > **Empowering Developers by Breaking the AI Context Barrier.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
