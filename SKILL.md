@@ -1,6 +1,6 @@
 ---
 name: antigravity-token-optimizer
-description: Optimizes Token usage in Antigravity through configuration, plugins, and efficient coding patterns. Use this skill when the user mentions "Token costs", "context window issues", "slow responses", or wants to "optimize Antigravity performance".
+description: Optimizes Token usage through VFS, pruning, and efficient patterns. (优化 Antigravity 的 Token 消耗，集成 VFS、上下文剪枝及高效编程模式)
 ---
 
 # Antigravity Token Optimizer
