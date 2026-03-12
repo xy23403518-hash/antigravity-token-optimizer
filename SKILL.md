@@ -1,6 +1,6 @@
 ---
 name: antigravity-token-optimizer
-description: Optimizes Token usage through VFS, pruning, and efficient patterns. (优化 Antigravity 的 Token 消耗，集成 VFS、上下文剪枝及高效编程模式)
+description: Universal Token Optimization Skill for AI-assisted coding (Claude Code, Cursor, Codex, Antigravity). Minimizes costs through VFS and efficient context management.
 ---
 
 # Antigravity Token Optimizer
