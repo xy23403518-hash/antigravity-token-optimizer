@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Antigravity/Claude logs
+*.log
+transcript.md
+metrics.json
+browser_recordings/
+html_artifacts/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Temporary workspace files
+antigravity-token-optimizer-workspace/
+evals/
+brain/

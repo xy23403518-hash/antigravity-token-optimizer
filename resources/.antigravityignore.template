@@ -1,0 +1,43 @@
+# Antigravity project ignore patterns
+# 自动生成的 Antigravity 忽略模板，用于减少 Token 消耗
+
+# Build & Dependencies
+node_modules/
+dist/
+build/
+.next/
+out/
+.turbo/
+package-lock.json
+yarn.lock
+
+# Data & Database
+*.db
+*.sqlite
+*.csv
+*.xlsx
+*.parquet
+
+# Media & Large Assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.mp4
+*.pdf
+*.zip
+*.tar.gz
+
+# Logs & History
+*.log
+.gemini/antigravity/brain/
+888-历史任务/
+999-小工具/
+
+# Project Specific
+微信学习社区/
+微信公众号*/
+Python自学手册/
+D:\Temp\Antigravity\OpenCode\dist\
+D:\Temp\Antigravity\OpenCode\node_modules\
