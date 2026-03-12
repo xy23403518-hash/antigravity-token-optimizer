@@ -1,0 +1,49 @@
+# Claude Code Context Ignore File
+# Recommended for token optimization
+
+# Dependency directories
+node_modules/
+bower_components/
+vendor/
+
+# Build outputs
+dist/
+build/
+out/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+logs/
+
+# Compressed files
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Large documentation or media
+assets/large_media/
+docs/generated/
+*.pdf
+*.jpg
+*.png
+*.gif
+*.mp4
+
+# Binary artifacts
+.git/
+.svn/
+.hg/

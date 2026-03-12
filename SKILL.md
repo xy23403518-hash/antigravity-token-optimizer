@@ -3,9 +3,9 @@ name: antigravity-token-optimizer
 description: Universal Token Optimization Skill for AI-assisted coding (Claude Code, Cursor, Codex, Antigravity). Minimizes costs through VFS and efficient context management.
 ---
 
-# Antigravity Token Optimizer
+# Hybrid Token Optimizer (Antigravity & Claude Code)
 
-This skill provides a systematic approach to reducing Token consumption and improving the efficiency of Antigravity.
+This skill provides a systematic approach to reducing Token consumption for both Antigravity and Claude Code CLI across Windows, macOS, and Linux.
 
 ## Core Optimization Pillars
 
@@ -13,91 +13,50 @@ This skill provides a systematic approach to reducing Token consumption and impr
 
 Exclude irrelevant directories to prevent the AI from scanning unnecessary files.
 
-- **Action**: Use the provided template to create or update `.antigravityignore`.
-- **Reference**: [resources/.antigravityignore.template](file:///C:/Users/user/.gemini/antigravity/skills/antigravity-token-optimizer/resources/.antigravityignore.template)
+- **Antigravity**: Use `.antigravityignore`.
+  - [Template](file:///e:/Temp/Map2D/Temp/Antigravity/AntiTokenSkill/antigravity-token-optimizer/resources/.antigravityignore.template)
+- **Claude Code**: Use `.claudeignore`.
+  - [Template](file:///e:/Temp/Map2D/Temp/Antigravity/AntiTokenSkill/antigravity-token-optimizer/resources/.claudeignore.template)
 
-### 2. Plugin-Based Context Management
+### 2. Session & Context Management
 
-Use the DCP (Dynamic Context Pruning) plugin to automatically handle conversational history.
+#### Antigravity (DCP)
 
-- **Activation**: Ensure `@tarquinen/opencode-dcp` is in your plugin list.
-- **Commands**:
-  - `/dcp context`: Check current Token usage.
-  - `/dcp compress`: Manually trigger compression.
-  - `/dcp sweep`: Prune recent tool outputs.
+- Ensure `@tarquinen/opencode-dcp` is active.
+- `/dcp context`, `/dcp compress`, `/dcp sweep`.
 
-### 3. Data Format Optimization
+#### Claude Code (Built-in)
 
-Use **TOON (Token-Oriented Object Notation)** instead of JSON for large structured data.
+- **`/clear`**: Start a new chat to reset context once a task is done.
+- **`/compact`**: Summarize history to save tokens while keeping context.
+- **`/cost`**: Monitor session API usage and burn rate.
 
-- **Benefit**: Reduces Token count by up to 50% by using indentation instead of braces/quotes.
+### 3. Global Settings Optimization
 
-### 4. Efficient Scripting Patterns
+Optimize default models to balance capability and cost.
 
-Refactor long-running scripts (like crawlers or parsers) to be efficient and resumable.
+| OS | Claude Code Settings Path |
+| :--- | :--- |
+| **Windows** | `%USERPROFILE%\.claude\settings.json` |
+| **macOS** | `~/.claude/settings.json` |
+| **Linux** | `~/.claude/settings.json` |
 
-- **断点续传 (Resumable Operations)**: Always check for existing output before starting a heavy LLM task.
-- **Smart Range Extraction**: For PDF/Text processing, search for keywords and only read relevant sections.
-- **Reference Script**: [scripts/refactor_resumable.py](file:///C:/Users/user/.gemini/antigravity/skills/antigravity-token-optimizer/scripts/refactor_resumable.py)
+- **Strategy**: Set `ANTHROPIC_MODEL` to a Sonnet-equivalent (e.g., `qwen3.5-plus` or `claude-3-7-sonnet`) instead of Opus for daily tasks.
 
-### 1. Advanced Token Optimization Techniques
+### 4. Tiered Context (CLAUDE.md)
 
-- **VFS (Virtual Function Signatures)**: Use the `vfs` tool to scan code structure without reading full files.
-- **Guidance**: Use `vfs` on large directories before `view_file`.
-- **Impact**: Reduces token overhead by ~70-90% for discovery tasks.
+- **Context Hub**: Use `CLAUDE.md` for high-level rules.
+- **Lazy Loading**: Refer to specific files instead of including all details in `CLAUDE.md`.
 
-#### 2. Tiered Context Management (CLAUDE.md)
+### 5. OS-Specific Specialized Optimizations
 
-- **Context Hub**: Instead of one massive `CLAUDE.md`, use a "Hub and Spoke" documentation model.
-- **Structure**: Use `CLAUDE.md` for high-level rules and links to component-specific `.md` files in subdirectories.
-- **Benefit**: Antigravity only loads deep context when entering specific component paths.
-
-### 4. OS-Specific Specialized Optimizations (WSL/Windows)
-
-- **Windows/WSL Detection**: Before running heavy commands, identify the shell/OS:
-
-- **Windows**: `$PSVersionTable` or `cmd /c ver`
-- **WSL**: `grep -i microsoft /proc/version`
-- **MacOS**: `uname -a`
-
-#### System Specific Tips
-
-- **Windows / WSL**:
-  - Use `wslpath` to auto-translate paths when switching between Windows and WSL mounts.
-  - In WSL, use `grep/sed` pipelines to filter large logs before they reach the AI.
-- **MacOS**:
-  - Use `mdfind` (Spotlight) for instant, token-efficient file searching.
-  - Use `pbpaste` to inject clipboard content instead of reading whole files for snippets.
-
-### 3. Local Tool Offloading
-
-- **Format/Lint**: Use `run_command` with `prettier`, `eslint`, or `ruff`.
-- **Lint/Format**: Run `prettier --write`, `ruff check --fix`, or `eslint --fix`.
-- **Build**: Run local build checks instead of asking the AI to "simulate" a build.
-
-### 8. Environment Readiness & Setup
-
-In a new environment, always perform a dependency check:
-
-- **Core Utilities**: Check for `fd` (modern find), `ruff` (fast linter/formatter), and `jq` (JSON processor).
-- **Environment Tools**:
-  - **WSL**: Ensure `wslpath` is available.
-  - **MacOS**: Ensure `mdfind` and `pbcopy/pbpaste` are accessible.
-- **Antigravity Plugins**: List active plugins using internally available tools to confirm DCP or TOON status.
-
-### 9. Safety & Fallbacks (Cross-OS Robustness)
-
-1. **Existence Guard**: Before running a local tool via `run_command` (e.g., `ruff`, `prettier`), always verify its availability using `which <tool>` (Unix/WSL/Mac) or `where.exe <tool>` (Windows).
-2. **Path Validation**: After using `wslpath` or manual translation, verify the path's existence with `ls` or `dir` before performing any write operations.
-3. **VFS Fallback**: If the `vfs` tool fails or returns empty for a valid directory, fall back to a shallow `list_dir` (max depth 1) to build context manually.
-4. **Graceful Degression**: If a specialized tool (`mdfind`, `pbpaste`) fails due to OS permissions or missing environment variables, revert to standard Antigravity tools immediately without spending tokens on debugging the environment unless explicitly asked.
+- **Windows**: Use `Get-ChildItem -Path "$env:USERPROFILE\.claude" -File` for config discovery.
+- **macOS/Linux**: Use `ls -a ~/.claude/` and `grep` for efficient local filtering.
 
 ## Workflow
 
-1. **Initialize**: Check for prerequisites and suggest installation if missing.
-2. **Detect**: Identify OS/Shell environment.
-3. **Guard**: Validate tool availability for the specific OS.
-4. **Audit**: Analyze current Token usage.
-5. **Configure**: Deploy `.antigravityignore` and tiered `CLAUDE.md`.
-6. **Refactor**: Apply VFS and Local Tooling patterns with safety checks.
-7. **Compact**: Run `/compact` proactively at 75% context.
+1. **Detect**: Identify OS and tool versions (Claude Code/Antigravity).
+2. **Audit**: Run `/cost` (Claude) or `/dcp context` (Antigravity).
+3. **Configure**: Deploy `.claudeignore` or `.antigravityignore`.
+4. **Optimize**: Update `settings.json` default models.
+5. **Guidance**: Use `CLAUDE.md` to define project boundaries.
