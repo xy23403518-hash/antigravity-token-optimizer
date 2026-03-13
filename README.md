@@ -1,12 +1,12 @@
-# 🚀 AI Token Optimizer (Universal)
+# 🚀 Pure Antigravity Expert & Performance Optimizer
 
 ![Project Hero](resources/media/hero_image.png)
 
-> **Empowering Developers by Breaking the AI Context Barrier.**
+> **Pure Antigravity Optimization with Senior Engineer Excellence.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20WSL%20%7C%20Mac%20%7C%20Linux-blue.svg)](https://github.com/xy23403518-hash/antigravity-token-optimizer)
+[![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://github.com/xy23403518-hash/antigravity-token-optimizer)
 
 [English](#english) | [中文](#中文)
 

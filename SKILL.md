@@ -1,17 +1,4 @@
 ---
-name: antigravity-token-optimizer
-description: Universal Token Optimization Skill for AI-assisted coding (Claude Code, Cursor, Codex, Antigravity). Minimizes costs through VFS and efficient context management.
----
-
-# Hybrid Token Optimizer (Antigravity & Claude Code)
-
-This skill provides a systematic approach to reducing Token consumption for both Antigravity and Claude Code CLI across Windows, macOS, and Linux.
-
-## Core Optimization Pillars
-
-### 1. Configuration-Level Pruning
-
-Exclude irrelevant directories to prevent the AI from scanning unnecessary files.
 
 - **Antigravity**: Use `.antigravityignore`.
   - [Template](file:///e:/Temp/Map2D/Temp/Antigravity/AntiTokenSkill/antigravity-token-optimizer/resources/.antigravityignore.template)
